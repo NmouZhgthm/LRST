@@ -1,18 +1,15 @@
 from flask import Flask, render_template
 import os
 
-app = Flask(__name__, 
-    template_folder='../templates',
-    static_folder='../static'
-)
+app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return "Hello from LRST!"  # 先用简单的返回测试
 
 @app.route('/api/test')
 def test():
     return {"message": "API is working!"}
 
-if __name__ == '__main__':
-    app.run()
+# Vercel 需要这个
+app = app.wsgi_app
